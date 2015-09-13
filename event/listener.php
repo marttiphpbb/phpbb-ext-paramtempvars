@@ -57,7 +57,7 @@ class listener implements EventSubscriberInterface
 
 		foreach ($params as $name => $value)
 		{
-			$template_vars['CUSTOMCODE_PARAM_' . strtoupper($name)] = $value;
+			$template_vars['PARAMTEMPVARS_' . strtoupper($name)] = $value;
 		}
 
 		if (sizeof($template_vars))

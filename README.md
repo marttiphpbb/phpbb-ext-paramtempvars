@@ -1,6 +1,13 @@
 ### phpBB 3.1 PhpBB Extension - marttiphpbb Parameter Template Variables
 
 
+    PARAMTEMPVARS_<param_name>
+
+The extension produces for each parameter in the query of the url a template variable. <param_name> is in uppercase. For example if you want to put some content on the private messages pages only --> The url is: your-domain.org/ucp.php?i=pm. Then you can select the private messages pages with:
+
+    <!-- IF SCRIPT_NAME == 'ucp' and PARAMTEMPVARS_I == 'pm'  -->
+    Your content for the private messages pages only  ...
+    <!-- ENDIF -->
 
 #### Quick Install
 
