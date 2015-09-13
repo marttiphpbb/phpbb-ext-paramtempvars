@@ -1,0 +1,8 @@
+services:
+    marttiphpbb.paramtempvars.listener:
+        class: marttiphpbb\paramtempvars\event\listener
+        arguments:
+            - @template
+            - @user
+        tags:
+            - { name: event.listener }
