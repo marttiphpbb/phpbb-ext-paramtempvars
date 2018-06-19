@@ -1,5 +1,7 @@
 # PhpBB Extension - marttiphpbb Parameter Template Variables
 
+[Topic on phpBB.com](https://www.phpbb.com/community/viewtopic.php?f=456&t=2476316)
+
 The extension makes all query parameters of the current url available in
 the template. They are all put under the template variable `marttiphpbb_paramtempvars`
 
