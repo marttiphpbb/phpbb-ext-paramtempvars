@@ -1,16 +1,24 @@
 # PhpBB Extension - marttiphpbb Parameter Template Variables
 
-    PARAMTEMPVARS_<param_name>
+The extension makes all query parameters of the current url available in
+the template. They are all put under the template variable `marttiphpbb_paramtempvars`
 
-The extension produces for each parameter in the query of the url a template variable. `<param_name>` is in uppercase. For example if you want to put some content on the private messages pages only --> The url is: your-domain.org/ucp.php?i=pm. Then you can select the private messages pages with:
+I.e:
 
-    <!-- IF SCRIPT_NAME == 'ucp' and PARAMTEMPVARS_I == 'pm'  -->
-    Your content for the private messages pages only  ...
-    <!-- ENDIF -->
+    {%- if SCRIPT_NAME == 'ucp' and marttiphpbb_paramtempvars.i == 'pm' -%}
+        This content is only visible in the private messages page in the UCP...
+        Url: https://your-domain.org/ucp.php?i=pm
+    {%- endif -%}
+
+In the previous version (for phpBB 3.1) this extension made the query parameters available in the form of:
+
+    PARAMTEMPVARS_<parameter_name_uppercase>
+
+This format is still available but depreciated.
 
 ## Requirements
 
-* phpBB 3.2+
+* phpBB 3.2.1+
 * PHP 7+
 
 ## Quick Install

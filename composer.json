@@ -3,16 +3,16 @@
 	"type": "phpbb-extension",
 	"description": "Parameter Template Variables extension for phpBP",
 	"homepage": "https://github.com/marttiphpbb/phpbb-ext-paramtempvars",
-	"version": "0.1.0",
+	"version": "0.2.0",
 	"time": "2018-06-19",
 	"keywords": ["phpbb", "extension", "template", "variables"],
 	"license": "GPL-2.0",
 	"authors": [{
-			"name": "martti",
-			"email": "info@martti.be",
-			"homepage": "https://github.com/marttiphpbb/",
-			"role": "Developer"
-		}],
+		"name": "martti",
+		"email": "info@martti.be",
+		"homepage": "https://github.com/marttiphpbb/",
+		"role": "Developer"
+	}],
 	"require": {
 		"php": ">=7"
 	},
@@ -22,7 +22,7 @@
 	"extra": {
 		"display-name": "Parameter Template Variables",
 		"soft-require": {
-			"phpbb/phpbb": ">=3.2"
+			"phpbb/phpbb": ">=3.2.1"
 		},
 		"version-check": {
 			"host": "marttiphpbb.github.io",

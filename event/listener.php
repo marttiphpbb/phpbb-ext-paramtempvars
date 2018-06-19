@@ -1,68 +1,55 @@
 <?php
 /**
 * phpBB Extension - marttiphpbb paramtempvars
-* @copyright (c) 2014 marttiphpbb <info@martti.be>
+* @copyright (c) 2014 - 2018 marttiphpbb <info@martti.be>
 * @license GNU General Public License, version 2 (GPL-2.0)
 */
 
 namespace marttiphpbb\paramtempvars\event;
 
-use phpbb\template\twig\twig as template;
+use phpbb\event\data as event;
 use phpbb\user;
+use marttiphpbb\paramtempvars\util\paramtempvars_directory;
 
-use marttiphpbb\paramtempvars\model\paramtempvars_directory;
-
-/**
-* @ignore
-*/
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 
-/**
-* Event listener
-*/
 class listener implements EventSubscriberInterface
 {
-	/* @var template */
-	protected $template;
-
-	/* @var user */
 	protected $user;
 
-	/**
-	 * @param template $template
-	 * @param user $user
-	*/
-	public function __construct(
-		template $template,
-		user $user
-	)
+	public function __construct(user $user)
 	{
-		$this->template = $template;
 		$this->user = $user;
 	}
 
 	static public function getSubscribedEvents()
 	{
-		return array(
-			'core.page_footer'		=> 'core_page_footer',
-		);
+		return [
+			'core.twig_environment_render_template_before'
+				=> 'core_twig_environment_render_template_before',
+		];
 	}
 
-	public function core_page_footer($event)
+	public function core_twig_environment_render_template_before(event $event)
 	{
 		$query_string = $this->user->page['query_string'];
-
-		$params = $template_vars = array();
+		$params = [];
 		parse_str($query_string, $params);
+
+		if (!count($params))
+		{
+			return;
+		}
+
+		$context = $event['context'];
 
 		foreach ($params as $name => $value)
 		{
-			$template_vars['PARAMTEMPVARS_' . strtoupper($name)] = $value;
+			$context['PARAMTEMPVARS_' . strtoupper($name)] = $value;
 		}
 
-		if (sizeof($template_vars))
-		{
-			$this->template->assign_vars($template_vars);
-		}
+		$context['marttiphpbb_paramtempvars'] = $params;
+
+		$event['context'] = $context;
 	}
 }
